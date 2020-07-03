@@ -21,7 +21,7 @@ class Engine {
     bool IsRunning();
     inline SDL_Renderer* GetRenderer(){ return _renderer; }
   private:
-    bool isRunning;
+    bool _isRunning;
     SDL_Window* _window;
     SDL_Renderer* _renderer;
     static Engine* instace;

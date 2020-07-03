@@ -37,7 +37,7 @@ bool Engine::Init()
     return false;
   }
 
-  return isRunning = true;
+  return _isRunning = true;
 }
 
 bool Engine::Clean()
@@ -47,7 +47,7 @@ bool Engine::Clean()
 
 void Engine::Quit()
 {
-
+  _isRunning = false;
 }
 
 void Engine::Update()
@@ -63,10 +63,20 @@ void Engine::Render()
 
 void Engine::Events()
 {
-
+  SDL_Event event;
+  SDL_PollEvent(&event);
+  switch (event.type)
+  {
+  case SDL_QUIT:
+      Quit();
+    break;
+  
+  default:
+    break;
+  }
 }
 
 bool Engine::IsRunning()
 {
-  return isRunning;
+  return _isRunning;
 }
