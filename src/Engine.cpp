@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Engine.h"
 
 
@@ -20,7 +19,25 @@ Engine* Engine::GetInstance() {
 
 bool Engine::Init()
 {
-  isRunning = true;
+  if (SDL_Init(SDL_INIT_VIDEO) != 0 && IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) != 0) {
+    SDL_Log("Failed to initialize SDL", SDL_GetError());
+    return false;
+  }
+  
+  _window = SDL_CreateWindow("GameEngine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_HEIGHT, SCREEN_WIDTH, 0);
+  if (_window == nullptr) {
+    SDL_Log("Failed to create window", SDL_GetError());
+    return false;
+  }
+
+  _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+  if (_renderer == nullptr) {
+    SDL_Log("Failed to create renderer", SDL_GetError());
+    return false;
+  }
+
+  return isRunning = true;
 }
 
 bool Engine::Clean()
@@ -35,12 +52,13 @@ void Engine::Quit()
 
 void Engine::Update()
 {
-  std::cout << "Updating..." <<std::endl;
+
 }
 
 void Engine::Render()
 {
-
+  SDL_SetRenderDrawColor(_renderer, 124, 218, 254, 255);
+  SDL_RenderPresent(_renderer);
 }
 
 void Engine::Events()
