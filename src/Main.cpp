@@ -1,11 +1,15 @@
-#include <iostream>
-#include <SDL2/SDL.h>
+#include "Engine.h"
 
-using namespace std;
+int main() {
+  auto game = Engine::GetInstance();
 
-int main(int argc, char** argv) {
-  if(SDL_Init(SDL_INIT_EVERYTHING) == 0){
-    cout << "Working" << endl;
+  game->Init();
+  while (game->IsRunning())
+  {
+   game->Events();
+   game->Update();
+   game->Render();
   }
+  game->Clean();
   return 0;
 }
