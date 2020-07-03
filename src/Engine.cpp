@@ -37,12 +37,17 @@ bool Engine::Init()
     return false;
   }
 
+  TextureManager::GetInstance()->Load("1tree", "assets/img/1tree.png");
   return _isRunning = true;
 }
 
 bool Engine::Clean()
 {
-
+  TextureManager::GetInstance()->Clean();
+  SDL_DestroyRenderer(_renderer);
+  SDL_DestroyWindow(_window);
+  IMG_Quit();
+  SDL_Quit();
 }
 
 void Engine::Quit()
@@ -58,6 +63,8 @@ void Engine::Update()
 void Engine::Render()
 {
   SDL_SetRenderDrawColor(_renderer, 124, 218, 254, 255);
+  SDL_RenderClear(_renderer);
+  TextureManager::GetInstance()->Draw("1tree", 100, 100, 101, 103, SDL_FLIP_NONE);
   SDL_RenderPresent(_renderer);
 }
 

@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include "TextureManager.h"
 
 #define SCREEN_WIDTH 960
 #define SCREEN_HEIGHT 640
