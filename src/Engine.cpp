@@ -38,6 +38,10 @@ bool Engine::Init()
   }
 
   TextureManager::GetInstance()->Load("1tree", "assets/img/1tree.png");
+
+  Vector2D v1(1,1), v2(1,1), v3;
+  v3 = v1 + v2;
+  v3.Log("V3: ");
   return _isRunning = true;
 }
 
