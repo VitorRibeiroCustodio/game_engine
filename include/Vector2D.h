@@ -1,14 +1,12 @@
 #ifndef VECTOR2D_H
 #define VECTOR2D_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <iostream>
 
 
 class Vector2D {
   public:
-    int X,Y;
+    float X,Y;
 
   public:
     Vector2D(float x=0, float y=0): X(x), Y(y) {};
