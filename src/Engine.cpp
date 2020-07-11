@@ -38,9 +38,6 @@ bool Engine::Init()
   }
 
   TextureManager::GetInstance()->Load("1tree", "assets/img/1tree.png");
-
-  Transform tf;
-  tf.Log();
   return _isRunning = true;
 }
 
