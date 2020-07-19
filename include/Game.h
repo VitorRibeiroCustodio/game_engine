@@ -1,13 +1,14 @@
 #include <string>
 #include <iostream>
 #include "SDL_include.h"
+#include "State.h"
 
 class Game {
   public:
     ~Game();
     void Run();
     SDL_Renderer* GetRenderer();
-    // State& GetState();
+    State& GetState();
     static Game& GetInstance();
 
   private:
@@ -15,5 +16,5 @@ class Game {
     static Game* instance;
     SDL_Window* window;
     SDL_Renderer* renderer;
-    // State* state;
+    State* state;
 };

@@ -38,9 +38,10 @@ Game::Game(std::string title, int width, int height) {
     	exit(1);
     }
 
-    allocateChannels = Mix_AllocateChannels(32);
+  allocateChannels = Mix_AllocateChannels(32);
   window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+  state = new State();
 }
 
 Game::~Game()
@@ -53,11 +54,27 @@ Game::~Game()
 	SDL_Quit();
 }
 
+State& Game::GetState()
+{
+	return *state;
+}
+
 SDL_Renderer* Game::GetRenderer()
 {
 	return renderer;
 }
 
 void Game::Run() {
-  delete instance;
+  state->LoadAssets();      
+        
+	while(!state->QuitRequested())
+	{
+
+		state->Update(0);
+		state->Render();
+		SDL_RenderPresent(renderer);
+		SDL_Delay(33);	
+	}
+
+	delete instance;
 }
